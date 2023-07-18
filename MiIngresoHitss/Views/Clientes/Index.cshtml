@@ -1,0 +1,30 @@
+﻿@model List<MiIngresoHitss.Models.Cliente>
+
+<h1>Listado de Clientes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th></th> <!-- Columna para los botones de acciones -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Nombre</td>
+                <td>@cliente.Direccion</td>
+                <td>@cliente.Telefono</td>
+                <td>
+                    <a href="@Url.Action("Editar", "Clientes", new { id = cliente.Id })" class="btn btn-primary">Editar</a>
+                    <a href="@Url.Action("Borrar", "Clientes", new { id = cliente.Id })" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Crear", "Clientes")" class="btn btn-success">Agregar Cliente</a>

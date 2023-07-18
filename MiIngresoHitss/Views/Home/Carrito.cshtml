@@ -1,0 +1,50 @@
+﻿@model MiIngresoHitss.ViewModels.CatalogoViewModel
+
+<h1>Carrito de Compras</h1>
+
+@if (Model.Carrito.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th></th> <!-- Columna para el botón Eliminar -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model.Carrito)
+            {
+                <tr>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Descripcion</td>
+                    <td>@producto.Precio</td>
+                    <td>
+                        <form method="post" action="@Url.Action("EliminarDelCarrito", "Home")">
+                            <input type="hidden" name="productoId" value="@producto.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar del carrito</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="post" action="@Url.Action("Comprar", "Home")">
+        <div class="form-group">
+            <label for="clienteId">Cliente:</label>
+            <select class="form-control" id="clienteId" name="clienteId">
+                @foreach (var cliente in Model.Clientes)
+                {
+                    <option value="@cliente.Id">@cliente.Nombre</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Comprar</button>
+    </form>
+}
+else
+{
+    <p>No hay productos en el carrito.</p>
+}

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MiIngresoHitss.Models.ProductoComprado>
+
+<h1>Productos Comprados</h1>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var productoComprado in Model)
+            {
+                <tr>
+                    <td>@productoComprado.NombreProducto</td>
+                    <td>@productoComprado.NombreCliente</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se han comprado productos.</p>
+}

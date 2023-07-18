@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <h1 class="text-center">Catálogo de Productos</h1>
+
+    <div class="row">
+        @foreach (var producto in Model.Productos)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@producto.Nombre</h5>
+                        <p class="card-text">@producto.Descripcion</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Precio: @producto.Precio.ToString("C")</h6>
+                        <div class="btn-group" role="group">
+                            <a href="@Url.Action("AgregarAlCarrito", "Home", new { productoId = producto.Id })" class="btn btn-primary">Agregar al carrito</a>
+                            <a href="@Url.Action("EditarProducto", "Home", new { productoId = producto.Id })" class="btn btn-warning">Editar</a>
+                            <a href="@Url.Action("EliminarProducto", "Home", new { productoId = producto.Id })" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Agregar Producto</h5>
+                    <p class="card-text">Agrega un nuevo producto al catálogo.</p>
+                    <a href="@Url.Action("AgregarProducto", "Home")" class="btn btn-success">Agregar Producto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
